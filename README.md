@@ -22,4 +22,5 @@ Run the command npm test to execute the integration tests
 
 * The project Front execute at port 4200 and Back at port 3001.
 * The configurations backend are at folder configuration of project.
+* The configurations front are at folder environments of project.
  
