@@ -1,0 +1,18 @@
+
+
+.btn-new-todo {
+    margin: 0.5rem 0.5rem 0.5rem 0rem;
+}
+
+.card-todo {
+    margin-bottom: 2rem;
+}
+
+.btn-trash {
+    cursor: pointer;
+}
+
+.msg-empty-list {
+    color: #d0d0d0;
+    font-style: italic;
+}

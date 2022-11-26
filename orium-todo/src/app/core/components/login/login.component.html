@@ -1,0 +1,34 @@
+
+<div>
+    <div class="row">
+        <div class="col-md-12">
+            <p class="h4 text-center">
+                Sing in to ToDo Orium
+            </p>
+        </div>
+    </div>
+    
+    <div class="row center-content">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <input type="email" id="user-name" [(ngModel)]="user.email" class="form-control" placeholder="Type your e-mail">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <input type="password" id="password" [(ngModel)]="user.password" class="form-control" placeholder="Type your password">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <button class="btn btn-success float-right" [disabled]="!user.email || !user.password" (click)="singIn()">Sign in</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+

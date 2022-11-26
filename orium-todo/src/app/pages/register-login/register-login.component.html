@@ -1,0 +1,33 @@
+<div class="row mb-4">
+    <div class="col-md-9">
+        <h1 class="h2 border-left pl-2">
+            Register
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                New Register
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="email" id="user-name" [(ngModel)]="newRegister.email" class="form-control" placeholder="Type your e-mail">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="password" id="password" [(ngModel)]="newRegister.password" class="form-control" placeholder="Type your password">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <button class="btn btn-success float-right mt-3" [disabled]="!newRegister.email || !newRegister.password" (click)="save()">Salvar</button>
+                <button class="btn btn-cancel float-right mt-3" (click)="navegateToSingIn()">Sing In</button>
+            </div>
+        </div>
+    </div>
+</div>
