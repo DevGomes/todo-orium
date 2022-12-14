@@ -58,7 +58,14 @@ export class TodoListComponent implements OnInit {
   }
 
   deleteItem(indexToDoList: number, indexItemToRemove: number): void {
-    this.todoLists[indexToDoList].items?.splice(indexItemToRemove, 1);
+    const currentItems: Array<ToDoListItem> = this.todoLists[indexToDoList].items || [] as Array<ToDoListItem>;
+    
+    if (currentItems[indexItemToRemove].id) {
+      currentItems[indexItemToRemove].markAsDelete = true;
+    } else {
+      currentItems.splice(indexItemToRemove, 1);
+    }
+
   }
 
   createNewToDoList(): void {
@@ -70,7 +77,11 @@ export class TodoListComponent implements OnInit {
   }
 
   deleteToDoList(indexCurrent: number): void {
-    this.todoLists.splice(indexCurrent, 1);
+    if (this.todoLists[indexCurrent].id) {
+      this.todoLists[indexCurrent].markAsDelete = true;
+    } else {
+      this.todoLists.splice(indexCurrent, 1);
+    }
   }
 
   isInvalidList(): boolean {
@@ -89,6 +100,10 @@ export class TodoListComponent implements OnInit {
 
   isUpdateList(): boolean {
     return this.todoLists[0].id ? true : false;
+  }
+
+  isEmptyList(items: Array<ToDoListItem>): boolean {
+    return items.filter(i => i.markAsDelete).length == items.length;
   }
 
   async save(): Promise<void> {

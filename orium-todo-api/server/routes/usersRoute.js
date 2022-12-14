@@ -9,6 +9,10 @@ router.post('/users', async (req, res) => {
     res.end();
 });
 
+router.get('/users', async (req, res) => {
+    res.send({t: 'Tudo certo'})
+});
+
 router.post('/users/authenticate', async (req, res) => {
     const user = req.body;
     await usersService.authenticate(user, res);

@@ -21,6 +21,18 @@ exports.deleteItemsList = (listId) => {
     return database.none('delete from todo.list_item where list_id = $1', [listId]);
 };
 
+exports.deleteListItemById = (id) => {
+    return database.none('delete from todo.list_item where id = $1', [id]);
+}
+
+exports.updateListName = (newName, listId) => {
+    return database.none('update todo.list set name = $1 where id = $2', [newName, listId]);
+}
+
+exports.deleteListById = (id) => {
+    return database.none('delete from todo.list where id = $1', [id]);
+}
+
 exports.deleteTodoList = (userId) => {
     return database.none('delete from todo.list where users_id = $1', [userId]);
 }

@@ -13,7 +13,7 @@ test('Should create a todo list', async () => {
         expect(list.id).toBeDefined();
     }
 
-    clearDatasTest(resPostTodoList, authenticateUser);
+    await clearDatasTest(resPostTodoList, authenticateUser);
 });
 
 test('Should get todo list by user', async () => {
@@ -22,11 +22,11 @@ test('Should get todo list by user', async () => {
     const resGetTodoList = await requestApi(`list-todo/${authenticateUser.user.id}`, 'get', undefined, { 'Authorization': `Bearer ${authenticateUser.token}` });
 
     expect(resGetTodoList.data.result.length).toBe(resPostTodoList.data.result.length);
-    for (let index = 0; index < resPostTodoList.length; inde++) {
+    for (let index = 0; index < resPostTodoList.length; index++) {
         expect(resPostTodoList.data.result[index].list_id).toBe(resPostTodoList.data.result[index].id);
     }
 
-    clearDatasTest(resPostTodoList, authenticateUser);
+    await clearDatasTest(resPostTodoList, authenticateUser);
 });
 
 test('Should update a todo list', async () => {
@@ -41,12 +41,12 @@ test('Should update a todo list', async () => {
     const resUpdateList = await requestApi(`list-todo/${authenticateUser.user.id}`, 'put', todoListModel, { 'Authorization': `Bearer ${authenticateUser.token}` });
 
     const { result } = resUpdateList.data;
-    const indexLastItem = result[0].items.length - 1;
-    expect(result[0].name).toBe(nameListUpdate);
-    expect(result[0].items[indexLastItem].item).toBe(newItem);
-    expect(result[0].items[indexLastItem].id).toBeDefined();
+    const indexLastItem = result[0].list_item.length - 1;
+    expect(result[0].list_item[0].name).toBe(nameListUpdate);
+    expect(result[0].list_item[indexLastItem].item).toBe(newItem);
+    expect(result[0].list_item[indexLastItem].item_id).toBeDefined();
 
-    clearDatasTest(resUpdateList, authenticateUser);
+    await clearDatasTest(resPostTodoList, authenticateUser);
 });
 
 
@@ -75,31 +75,39 @@ const createTodoList = async () => {
     const newTodoList = [
         {
             "name": generateString(12),
+            "markAsDelete": false,
             "userId": {
                 "id": authenticateUser.user.id,
-                "email": authenticateUser.user.email
+                "email": authenticateUser.user.email,
+                "markAsDelete": false,
             },
             "items": [
                 {
-                    "item": generateString(14)
+                    "item": generateString(14),
+                    "markAsDelete": false,
                 },
                 {
-                    "item": generateString(12)
+                    "item": generateString(12),
+                    "markAsDelete": false,
                 }
             ]
         },
         {
             "name": generateString(10),
+            "markAsDelete": false,
             "userId": {
                 "id": authenticateUser.user.id,
-                "email": authenticateUser.user.email
+                "email": authenticateUser.user.email,
+                "markAsDelete": false,
             },
             "items": [
                 {
-                    "item": generateString(8)
+                    "item": generateString(8),
+                    "markAsDelete": false,
                 },
                 {
-                    "item": generateString(18)
+                    "item": generateString(18),
+                    "markAsDelete": false,
                 }
             ]
         }
